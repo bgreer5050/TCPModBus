@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SRModbusTCP;
+using EasyModbus;
 
 namespace SparkModbus.Console
 {
@@ -19,27 +20,33 @@ namespace SparkModbus.Console
 
         public Program()
         {
-            modbusTCP = new ModbusTCP(ipAddress, port);
-            modbusTCP.Connect();
-            //int[] response = modbusTCP.ReadInputRegisters(startAddress, qty);
-            bool[] response = modbusTCP.ReadDiscreteInputs(40001, qty);
+            System.Console.Beep();
+
+            EasyModbus.ModbusServer server = new ModbusServer();
+            server.Port = 502;
+            server.numberOfConnectedClientsChanged += Server_numberOfConnectedClientsChanged;
+            server.Listen();
+            while(true)
+            {
+                System.Console.WriteLine(server.NumberOfConnections.ToString());
+                server.coilsChanged += Server_coilsChanged;
+                
+            }
           
-
-            modbusTCP.Disconnect();
-
-            System.Console.WriteLine("Reg 1: " + response[0].ToString());
-            System.Console.WriteLine("Reg 2: " + response[1].ToString());
-            System.Console.WriteLine("Reg 1: " + response[2].ToString());
-            System.Console.WriteLine("Reg 1: " + response[3].ToString());
-            System.Console.WriteLine("Reg 1: " + response[4].ToString());
-            System.Console.WriteLine("Reg 1: " + response[5].ToString());
-            System.Console.WriteLine("Reg 1: " + response[6].ToString());
-            System.Console.WriteLine("Reg 1: " + response[7].ToString());
-            System.Console.WriteLine("Reg 1: " + response[8].ToString());
-            System.Console.WriteLine("Reg 1: " + response[9].ToString());
 
         }
 
+        private void Server_coilsChanged()
+        {
+            System.Console.Beep();
+            System.Console.WriteLine("Changed");
+        }
+
+        private void Server_numberOfConnectedClientsChanged()
+        {
+            System.Console.Beep();
+            System.Console.WriteLine("Changed");
+        }
 
         static void Main(string[] args)
         {

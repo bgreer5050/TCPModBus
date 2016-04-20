@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EasyModbus, Version=1.0.5908.34700, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\EasyModbusLibrary for .NET (DLL)\EasyModbus.dll</HintPath>
+    </Reference>
     <Reference Include="SRModbusTCP, Version=1.0.5293.30637, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\SRModbusTCP.dll</HintPath>
