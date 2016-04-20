@@ -16,13 +16,13 @@ namespace SparkModbus.Console
         private ushort startAddress = 0;
         private ushort qty = 10;
         private  ModbusTCP modbusTCP;
-
+        private EasyModbus.ModbusServer server;
 
         public Program()
         {
             System.Console.Beep();
 
-            EasyModbus.ModbusServer server = new ModbusServer();
+           server  = new ModbusServer();
             server.Port = 502;
             server.numberOfConnectedClientsChanged += Server_numberOfConnectedClientsChanged;
             server.Listen();
@@ -31,6 +31,7 @@ namespace SparkModbus.Console
                 System.Console.WriteLine(server.NumberOfConnections.ToString());
                 server.coilsChanged += Server_coilsChanged;
                 
+               
             }
           
 
@@ -39,11 +40,18 @@ namespace SparkModbus.Console
         private void Server_coilsChanged()
         {
             System.Console.Beep();
-            System.Console.WriteLine("Changed");
+            bool[] coils = server.coils;
+
+            System.Console.WriteLine(coils.Where(c => c.ToString() == "true").Count());
+
+
+            System.Console.WriteLine("Coils Changed");
+
         }
 
         private void Server_numberOfConnectedClientsChanged()
         {
+
             System.Console.Beep();
             System.Console.WriteLine("Changed");
         }
