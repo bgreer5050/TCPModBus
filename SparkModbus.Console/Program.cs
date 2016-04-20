@@ -16,35 +16,59 @@ namespace SparkModbus.Console
         private ushort startAddress = 0;
         private ushort qty = 10;
         private  ModbusTCP modbusTCP;
-
+        private EasyModbus.ModbusServer server;
 
         public Program()
         {
             System.Console.Beep();
 
-            EasyModbus.ModbusServer server = new ModbusServer();
+            server = new ModbusServer();
             server.Port = 502;
             server.numberOfConnectedClientsChanged += Server_numberOfConnectedClientsChanged;
             server.Listen();
             while(true)
             {
+               
                 System.Console.WriteLine(server.NumberOfConnections.ToString());
                 server.coilsChanged += Server_coilsChanged;
+                server.holdingRegistersChanged += Server_holdingRegistersChanged;
                 
+               
             }
           
 
         }
 
-        private void Server_coilsChanged()
+   
+
+        private void Server_holdingRegistersChanged()
         {
             System.Console.Beep();
+
+            int count = 0; // = server.holdingRegisters.Count();
+
+            
+
+            foreach (var x in server.holdingRegisters)
+            {
+                count += 1;
+                System.Console.WriteLine(x.ToString().Length);
+                System.Console.WriteLine(x.ToString());
+                System.Console.WriteLine("************************");
+
+            }
+            System.Console.WriteLine("Changed");
+        }
+
+        private void Server_coilsChanged()
+        {
+         //   System.Console.Beep();
             System.Console.WriteLine("Changed");
         }
 
         private void Server_numberOfConnectedClientsChanged()
         {
-            System.Console.Beep();
+           // System.Console.Beep();
             System.Console.WriteLine("Changed");
         }
 
