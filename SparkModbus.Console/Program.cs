@@ -20,41 +20,28 @@ namespace SparkModbus.Console
 
         public Program()
         {
-            System.Console.Beep();
+            ModbusClient modbusClient = new ModbusClient("192.168.1.3", 502);    //Ip-Address and Port of Modbus-TCP-Server
+            modbusClient.Connect();                                                    //Connect to Server
 
-           server  = new ModbusServer();
-            server.Port = 502;
-            server.numberOfConnectedClientsChanged += Server_numberOfConnectedClientsChanged;
-            server.Listen();
-            while(true)
-            {
-                System.Console.WriteLine(server.NumberOfConnections.ToString());
-                server.coilsChanged += Server_coilsChanged;
-                
-               
-            }
-          
+            modbusClient.WriteSingleCoil(3, true);
 
-        }
+            //modbusClient.WriteMultipleCoils(4, new bool[] { true, true, true, true, true, true, true, true, true, true });    //Write Coils starting with Address 5
+            //bool[] readCoils = modbusClient.ReadCoils(9, 10);                        //Read 10 Coils from Server, starting with address 10
+            //int[] readHoldingRegisters = modbusClient.ReadHoldingRegisters(0, 10);    //Read 10 Holding Registers from Server, starting with Address 1
 
-        private void Server_coilsChanged()
-        {
-            System.Console.Beep();
-            bool[] coils = server.coils;
+            //// Console Output
+            //for (int i = 0; i < readCoils.Length; i++)
+            //    System.Console.WriteLine("Value of Coil " + (9 + i + 1) + " " + readCoils[i].ToString());
 
-            System.Console.WriteLine(coils.Where(c => c.ToString() == "true").Count());
-
-
-            System.Console.WriteLine("Coils Changed");
+            //for (int i = 0; i < readHoldingRegisters.Length; i++)
+            //    System.Console.WriteLine("Value of HoldingRegister " + (i + 1) + " " + readHoldingRegisters[i].ToString());
+            modbusClient.Disconnect();                                                //Disconnect from Server
+            System.Console.Write("Press any key to continue . . . ");
+            System.Console.ReadKey(true);
 
         }
 
-        private void Server_numberOfConnectedClientsChanged()
-        {
-
-            System.Console.Beep();
-            System.Console.WriteLine("Changed");
-        }
+      
 
         static void Main(string[] args)
         {
