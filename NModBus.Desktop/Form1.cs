@@ -35,29 +35,13 @@ namespace NModBus.Desktop
 
             //System.Threading.Thread.Sleep(5000);
 
-            System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient("10.0.199.123", 502);
+            System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient("192.168.1.3", 502);
             Modbus.Device.ModbusIpMaster master = Modbus.Device.ModbusIpMaster.CreateIp(client);
 
-            bool[] readings = master.ReadInputs(Convert.ToUInt16(0), 500);
-            
-            lblResult1.Text = readings[0].ToString();
-            lblResult2.Text = readings[1].ToString();
 
+            master.WriteSingleRegister(Convert.ToUInt16(0), Convert.ToUInt16(210));
+            master.WriteSingleCoil(Convert.ToUInt16(0), true);
           
-
-            DataTable table = new DataTable();
-
-            table.Columns.Add(new DataColumn("Register"));
-            table.Columns.Add(new DataColumn("Value"));
-
-            foreach (var x in readings)
-            {
-                table.Rows.Add(x.ToString(), null);
-            }
-
-            dgvDigitalInputs.DataSource = table;
-
-            //dgvDigitalInputs
 
             master.Dispose();
             client.Close();
