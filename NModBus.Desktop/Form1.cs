@@ -35,7 +35,7 @@ namespace NModBus.Desktop
 
             //System.Threading.Thread.Sleep(5000);
 
-            System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient("10.0.200.152", 502);
+            System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient("10.0.199.123", 502);
             Modbus.Device.ModbusIpMaster master = Modbus.Device.ModbusIpMaster.CreateIp(client);
 
             bool[] readings = master.ReadInputs(Convert.ToUInt16(0), 500);
