@@ -29,13 +29,13 @@ namespace SparkModbus.Console
             while(true)
             {
                 System.Console.WriteLine(server.NumberOfConnections.ToString());
-                server.coilsChanged += Server_coilsChanged;
-                
-               
+                //server.coilsChanged += Server_coilsChanged;
+                //server.holdingRegistersChanged += Server_coilsChanged;
+                server.logDataChanged += Server_coilsChanged;
             }
-          
-
         }
+
+      
 
         private void Server_coilsChanged()
         {
@@ -43,27 +43,20 @@ namespace SparkModbus.Console
             bool[] coils = server.coils;
 
             System.Console.WriteLine(coils.Where(c => c.ToString() == "true").Count());
-
-
             System.Console.WriteLine("Coils Changed");
 
         }
 
         private void Server_numberOfConnectedClientsChanged()
         {
-
             System.Console.Beep();
             System.Console.WriteLine("Changed");
         }
 
         static void Main(string[] args)
         {
-
             Program program = new Program();
             System.Console.ReadKey();
-
-
-
         }
     }
 }
