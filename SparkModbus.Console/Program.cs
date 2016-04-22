@@ -22,20 +22,33 @@ namespace SparkModbus.Console
         {
             System.Console.Beep();
 
-           server  = new ModbusServer();
+            server  = new ModbusServer();
             server.Port = 502;
             server.numberOfConnectedClientsChanged += Server_numberOfConnectedClientsChanged;
             server.Listen();
-            while(true)
+
+            server.coilsChanged += Server_coilsChanged;
+
+
+            server.holdingRegistersChanged += Server_holdingRegistersChanged;
+
+            while (true)
             {
                 System.Console.WriteLine(server.NumberOfConnections.ToString());
-                //server.coilsChanged += Server_coilsChanged;
+              
+
+
                 //server.holdingRegistersChanged += Server_coilsChanged;
-                server.logDataChanged += Server_coilsChanged;
+                
+                //server.logDataChanged += Server_coilsChanged;
             }
         }
 
-      
+        private void Server_holdingRegistersChanged()
+        {
+            System.Console.WriteLine("Holding Registers Changed ************************ ");
+           
+        }
 
         private void Server_coilsChanged()
         {
@@ -43,7 +56,7 @@ namespace SparkModbus.Console
             bool[] coils = server.coils;
 
             System.Console.WriteLine(coils.Where(c => c.ToString() == "true").Count());
-            System.Console.WriteLine("Coils Changed");
+            System.Console.WriteLine("Coils Changed");            
 
         }
 
