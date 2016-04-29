@@ -24,10 +24,8 @@ namespace SparkModbus.Console
 
             server  = new ModbusServer();
             server.Port = 502;
-            server.numberOfConnectedClientsChanged += Server_numberOfConnectedClientsChanged;
             server.Listen();
 
-            server.coilsChanged += Server_coilsChanged;
 
 
             server.holdingRegistersChanged += Server_holdingRegistersChanged;
