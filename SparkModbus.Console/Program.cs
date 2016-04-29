@@ -55,12 +55,13 @@ namespace SparkModbus.Console
             Servers.Add(server503);
             Servers.Add(server504);
             Servers.Add(server505);
-            Servers.Add(server502_2);
+            //Servers.Add(server502_2);
 
 
             //Create seperate threads and event handlers for each server
             foreach(ModbusServer item in Servers)
             {
+                item.Listen();
                 item.holdingRegistersChanged += Item_holdingRegistersChanged;
             }
 
