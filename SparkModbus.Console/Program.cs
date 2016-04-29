@@ -11,7 +11,7 @@ namespace SparkModbus.Console
     class Program
     {
 
-        private  string ipAddress = "192.168.1.3";
+        //private  string ipAddress = "192.168.1.3";
         private  int port = 502;
         private ushort startAddress = 0;
         private ushort qty = 10;
@@ -34,7 +34,7 @@ namespace SparkModbus.Console
 
             while (true)
             {
-                System.Console.WriteLine(server.NumberOfConnections.ToString());
+                //System.Console.WriteLine(server.NumberOfConnections.ToString());
               
 
 
@@ -46,16 +46,21 @@ namespace SparkModbus.Console
 
         private void Server_holdingRegistersChanged()
         {
+            System.Console.Beep(); System.Console.Beep();
             System.Console.WriteLine("Holding Registers Changed ************************ ");
-           
+            System.Console.WriteLine(server.holdingRegisters[0].ToString());
+            System.Console.WriteLine(server.holdingRegisters[1].ToString());
+            System.Console.WriteLine(server.holdingRegisters[2].ToString());
+            System.Console.WriteLine(server.holdingRegisters[3].ToString());
+                        
         }
 
         private void Server_coilsChanged()
         {
-            System.Console.Beep();
+            System.Console.Beep(); System.Console.Beep();
             bool[] coils = server.coils;
 
-            System.Console.WriteLine(coils.Where(c => c.ToString() == "true").Count());
+            //System.Console.WriteLine(coils.Where(c => c.ToString() == "true").Count());
             System.Console.WriteLine("Coils Changed");            
 
         }
