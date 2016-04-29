@@ -35,12 +35,13 @@ namespace SparkModbus.Console
             while (true)
             {
                 //System.Console.WriteLine(server.NumberOfConnections.ToString());
-              
+
 
 
                 //server.holdingRegistersChanged += Server_coilsChanged;
-                
-                //server.logDataChanged += Server_coilsChanged;
+
+                //server.logDataChanged += Server_coilsChanged;\\
+
             }
         }
 
@@ -48,10 +49,10 @@ namespace SparkModbus.Console
         {
             System.Console.Beep(); System.Console.Beep();
             System.Console.WriteLine("Holding Registers Changed ************************ ");
-            System.Console.WriteLine(server.holdingRegisters[0].ToString());
-            System.Console.WriteLine(server.holdingRegisters[1].ToString());
-            System.Console.WriteLine(server.holdingRegisters[2].ToString());
-            System.Console.WriteLine(server.holdingRegisters[3].ToString());
+            System.Console.WriteLine("Holding Register at  0: " + server.holdingRegisters[0].ToString());
+            System.Console.WriteLine("Holding Register at  1: " + server.holdingRegisters[1].ToString());
+            System.Console.WriteLine("Holding Register at  2: " + server.holdingRegisters[2].ToString());
+            System.Console.WriteLine("Holding Register at  3: " + server.holdingRegisters[3].ToString());
                         
         }
 
