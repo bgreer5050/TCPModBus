@@ -23,6 +23,7 @@ namespace SendModBusMessages
             while(true)
             {
                 Console.ReadLine();
+
                 WriteValuesToHoldingRegisters();
 
             }
