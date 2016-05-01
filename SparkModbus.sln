@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkModbus.Console", "SparkModbus.Console\SparkModbus.Console.csproj", "{F24B481F-2AC1-4B7E-9BF8-D0070D708F73}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendModBusMessages", "SendModBusMessages\SendModBusMessages.csproj", "{21E9577B-7F29-4C0E-B12D-6545F038CF78}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModBusFormApp", "ModBusFormApp\ModBusFormApp.csproj", "{761D0B53-6651-4F24-BD82-1724AB422363}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkCycleListener.DataModel", "SparkCycleListener.DataModel\SparkCycleListener.DataModel.csproj", "{F3857D46-7906-424D-945F-6CA7029D93FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{761D0B53-6651-4F24-BD82-1724AB422363}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{761D0B53-6651-4F24-BD82-1724AB422363}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{761D0B53-6651-4F24-BD82-1724AB422363}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3857D46-7906-424D-945F-6CA7029D93FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3857D46-7906-424D-945F-6CA7029D93FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3857D46-7906-424D-945F-6CA7029D93FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3857D46-7906-424D-945F-6CA7029D93FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

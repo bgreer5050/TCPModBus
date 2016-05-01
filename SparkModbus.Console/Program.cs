@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SRModbusTCP;
 using EasyModbus;
+using SparkCycleListener.DataModel;
 
 namespace SparkModbus.Console
 {
@@ -55,6 +56,21 @@ namespace SparkModbus.Console
             System.Console.WriteLine("Holding Register at  3: " + server.holdingRegisters[3].ToString());
             System.Console.WriteLine(DateTime.Now.ToShortTimeString());
 
+            bool blnState;
+            if(server.holdingRegisters[2]==0)
+            {
+                blnState = false;
+            }
+            else
+            {
+                blnState = true;
+            }
+
+            MachineStateDataContext db = new MachineStateDataContext();
+            MachineState state = new MachineState{ AssetNumber = server.holdingRegisters[1].ToString(), DateTime = DateTime.Now.Date, MachineState1 = blnState };
+            db.MachineStates.InsertOnSubmit(state);
+            db.SubmitChanges();
+            db.Dispose();
         }
 
         private void Server_coilsChanged()
