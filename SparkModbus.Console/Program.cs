@@ -53,7 +53,8 @@ namespace SparkModbus.Console
             System.Console.WriteLine("Holding Register at  1: " + server.holdingRegisters[1].ToString());
             System.Console.WriteLine("Holding Register at  2: " + server.holdingRegisters[2].ToString());
             System.Console.WriteLine("Holding Register at  3: " + server.holdingRegisters[3].ToString());
-                        
+            System.Console.WriteLine(DateTime.Now.ToShortTimeString());
+
         }
 
         private void Server_coilsChanged()
