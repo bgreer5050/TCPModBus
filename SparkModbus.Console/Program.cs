@@ -54,7 +54,7 @@ namespace SparkModbus.Console
             System.Console.WriteLine("Holding Register at  1: " + server.holdingRegisters[1].ToString());
             System.Console.WriteLine("Holding Register at  2: " + server.holdingRegisters[2].ToString());
             System.Console.WriteLine("Holding Register at  3: " + server.holdingRegisters[3].ToString());
-            System.Console.WriteLine(DateTime.Now.ToShortTimeString());
+            System.Console.WriteLine(DateTime.Now.ToLocalTime());
 
             bool blnState;
             if(server.holdingRegisters[2]==0)
@@ -66,8 +66,8 @@ namespace SparkModbus.Console
                 blnState = true;
             }
 
-            MachineStateDataContext db = new MachineStateDataContext();
-            MachineState state = new MachineState{ AssetNumber = server.holdingRegisters[1].ToString(), DateTime = DateTime.Now.Date, MachineState1 = blnState };
+            SparkCycleListener.DataModel.MachineStateDataContext db = new MachineStateDataContext();
+            MachineState state = new MachineState{ AssetNumber = server.holdingRegisters[1].ToString(), DateTime = DateTime.Now.ToLocalTime(), MachineState1 = int.Parse(server.holdingRegisters[2].ToString()) };
             db.MachineStates.InsertOnSubmit(state);
             db.SubmitChanges();
             db.Dispose();

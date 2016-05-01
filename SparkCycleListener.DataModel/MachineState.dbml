@@ -1,12 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MfgMachineDataDev" Class="MachineStateDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=SHOPFLOOR\SHOPFLOORSQL;Initial Catalog=MfgMachineDataDev;Persist Security Info=True;User ID=AttSchedUsr" SettingsObjectName="SparkCycleListener.DataModel.Properties.Settings" SettingsPropertyName="MfgMachineDataDevConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MfrMachineDataLaptop" Class="MachineStateDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-1BEN3KJ\SQLEXPRESS;Initial Catalog=MfrMachineDataLaptop;Integrated Security=True" SettingsObjectName="SparkCycleListener.DataModel.Properties.Settings" SettingsPropertyName="MfrMachineDataLaptopConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.MachineState" Member="MachineStates">
     <Type Name="MachineState">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="AssetNumber" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="MachineState" Member="MachineState1" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="DateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="ProcessedByService" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="MachineState" Member="MachineState1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Processed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

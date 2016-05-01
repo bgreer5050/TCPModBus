@@ -22,7 +22,7 @@ namespace SparkCycleListener.DataModel
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="MfgMachineDataDev")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="MfrMachineDataLaptop")]
 	public partial class MachineStateDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -36,7 +36,7 @@ namespace SparkCycleListener.DataModel
     #endregion
 		
 		public MachineStateDataContext() : 
-				base(global::SparkCycleListener.DataModel.Properties.Settings.Default.MfgMachineDataDevConnectionString, mappingSource)
+				base(global::SparkCycleListener.DataModel.Properties.Settings.Default.MfrMachineDataLaptopConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -84,11 +84,11 @@ namespace SparkCycleListener.DataModel
 		
 		private string _AssetNumber;
 		
-		private bool _MachineState1;
-		
 		private System.DateTime _DateTime;
 		
-		private bool _ProcessedByService;
+		private int _MachineState1;
+		
+		private bool _Processed;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -98,12 +98,12 @@ namespace SparkCycleListener.DataModel
     partial void OnIdChanged();
     partial void OnAssetNumberChanging(string value);
     partial void OnAssetNumberChanged();
-    partial void OnMachineState1Changing(bool value);
-    partial void OnMachineState1Changed();
     partial void OnDateTimeChanging(System.DateTime value);
     partial void OnDateTimeChanged();
-    partial void OnProcessedByServiceChanging(bool value);
-    partial void OnProcessedByServiceChanged();
+    partial void OnMachineState1Changing(int value);
+    partial void OnMachineState1Changed();
+    partial void OnProcessedChanging(bool value);
+    partial void OnProcessedChanged();
     #endregion
 		
 		public MachineState()
@@ -151,26 +151,6 @@ namespace SparkCycleListener.DataModel
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="MachineState", Storage="_MachineState1", DbType="Bit NOT NULL")]
-		public bool MachineState1
-		{
-			get
-			{
-				return this._MachineState1;
-			}
-			set
-			{
-				if ((this._MachineState1 != value))
-				{
-					this.OnMachineState1Changing(value);
-					this.SendPropertyChanging();
-					this._MachineState1 = value;
-					this.SendPropertyChanged("MachineState1");
-					this.OnMachineState1Changed();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateTime", DbType="DateTime NOT NULL")]
 		public System.DateTime DateTime
 		{
@@ -191,22 +171,42 @@ namespace SparkCycleListener.DataModel
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProcessedByService", DbType="Bit NOT NULL")]
-		public bool ProcessedByService
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="MachineState", Storage="_MachineState1", DbType="Int NOT NULL")]
+		public int MachineState1
 		{
 			get
 			{
-				return this._ProcessedByService;
+				return this._MachineState1;
 			}
 			set
 			{
-				if ((this._ProcessedByService != value))
+				if ((this._MachineState1 != value))
 				{
-					this.OnProcessedByServiceChanging(value);
+					this.OnMachineState1Changing(value);
 					this.SendPropertyChanging();
-					this._ProcessedByService = value;
-					this.SendPropertyChanged("ProcessedByService");
-					this.OnProcessedByServiceChanged();
+					this._MachineState1 = value;
+					this.SendPropertyChanged("MachineState1");
+					this.OnMachineState1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Processed", DbType="Bit NOT NULL")]
+		public bool Processed
+		{
+			get
+			{
+				return this._Processed;
+			}
+			set
+			{
+				if ((this._Processed != value))
+				{
+					this.OnProcessedChanging(value);
+					this.SendPropertyChanging();
+					this._Processed = value;
+					this.SendPropertyChanged("Processed");
+					this.OnProcessedChanged();
 				}
 			}
 		}
