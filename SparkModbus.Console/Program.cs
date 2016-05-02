@@ -29,10 +29,10 @@ namespace SparkModbus.Console
 
             server  = new ModbusServer();
             server.Port = 502;
-            server.numberOfConnectedClientsChanged += Server_numberOfConnectedClientsChanged;
+           
             server.Listen();
 
-            server.coilsChanged += Server_coilsChanged;
+          
 
 
             server.holdingRegistersChanged += Server_holdingRegistersChanged;
@@ -53,12 +53,12 @@ namespace SparkModbus.Console
         private void Server_holdingRegistersChanged()
         {
             System.Console.Beep(); System.Console.Beep();
-            //System.Console.WriteLine("Holding Registers Changed ************************ ");
-            //System.Console.WriteLine("Holding Register at  0: " + server.holdingRegisters[0].ToString());
-            //System.Console.WriteLine("Holding Register at  1: " + server.holdingRegisters[1].ToString());
-            //System.Console.WriteLine("Holding Register at  2: " + server.holdingRegisters[2].ToString());
-            //System.Console.WriteLine("Holding Register at  3: " + server.holdingRegisters[3].ToString());
-            //System.Console.WriteLine(DateTime.Now.ToLocalTime());
+            System.Console.WriteLine("Holding Registers Changed ************************ ");
+            System.Console.WriteLine("Holding Register at  0: " + server.holdingRegisters[0].ToString());
+            System.Console.WriteLine("Holding Register at  1: " + server.holdingRegisters[1].ToString());
+            System.Console.WriteLine("Holding Register at  2: " + server.holdingRegisters[2].ToString());
+            System.Console.WriteLine("Holding Register at  3: " + server.holdingRegisters[3].ToString());
+            System.Console.WriteLine(DateTime.Now.ToLocalTime());
 
             bool blnState;
             bool blnContinue = true;
