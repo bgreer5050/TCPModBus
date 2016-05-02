@@ -19,6 +19,10 @@ namespace SparkModbus.Console
         private  ModbusTCP modbusTCP;
         private EasyModbus.ModbusServer server;
 
+
+        List<MachineState> recentMachineStateEntries = new List<MachineState>(); //Used to prevent duplicate entries
+
+
         public Program()
         {
             System.Console.Beep();
