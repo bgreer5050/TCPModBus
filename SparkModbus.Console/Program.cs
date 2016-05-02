@@ -21,7 +21,7 @@ namespace SparkModbus.Console
 
 
         List<MachineState> recentMachineStateEntries = new List<MachineState>(); //Used to prevent duplicate entries
-
+      
 
         public Program()
         {
@@ -61,7 +61,8 @@ namespace SparkModbus.Console
             System.Console.WriteLine(DateTime.Now.ToLocalTime());
 
             bool blnState;
-            if(server.holdingRegisters[2]==0)
+            bool blnContinue = true;
+            if (server.holdingRegisters[2]==0)
             {
                 blnState = false;
             }
@@ -70,11 +71,41 @@ namespace SparkModbus.Console
                 blnState = true;
             }
 
-            SparkCycleListener.DataModel.MachineStateDataContext db = new MachineStateDataContext();
-            MachineState state = new MachineState{ AssetNumber = server.holdingRegisters[1].ToString(), DateTime = DateTime.Now.ToLocalTime(), MachineState1 = int.Parse(server.holdingRegisters[2].ToString()) };
-            db.MachineStates.InsertOnSubmit(state);
-            db.SubmitChanges();
-            db.Dispose();
+            var mostRecentEvent = recentMachineStateEntries.OrderByDescending(c => c.DateTime).Where(c => c.AssetNumber == server.holdingRegisters[1].ToString()).FirstOrDefault();
+
+            if (mostRecentEvent != null)
+            {
+                TimeSpan ts = DateTime.Now.ToLocalTime() - mostRecentEvent.DateTime;
+                if(ts.TotalMilliseconds > 2000)
+                {
+                    blnContinue = true;
+                }
+                else
+                {
+                    blnContinue = false;
+                }
+            }
+
+
+            if(blnContinue==true)
+            {
+                SparkCycleListener.DataModel.MachineStateDataContext db = new MachineStateDataContext();
+
+
+
+
+                MachineState state = new MachineState { AssetNumber = server.holdingRegisters[1].ToString(), DateTime = DateTime.Now.ToLocalTime(), MachineState1 = int.Parse(server.holdingRegisters[2].ToString()) };
+                db.MachineStates.InsertOnSubmit(state);
+
+
+                recentMachineStateEntries.Remove(recentMachineStateEntries.OrderBy(c => c.DateTime).FirstOrDefault());
+
+                recentMachineStateEntries.Add(state);
+                db.SubmitChanges();
+                db.Dispose();
+            }
+
+           
         }
 
         private void Server_coilsChanged()
