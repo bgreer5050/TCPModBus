@@ -53,12 +53,12 @@ namespace SparkModbus.Console
         private void Server_holdingRegistersChanged()
         {
             System.Console.Beep(); System.Console.Beep();
-            System.Console.WriteLine("Holding Registers Changed ************************ ");
-            System.Console.WriteLine("Holding Register at  0: " + server.holdingRegisters[0].ToString());
-            System.Console.WriteLine("Holding Register at  1: " + server.holdingRegisters[1].ToString());
-            System.Console.WriteLine("Holding Register at  2: " + server.holdingRegisters[2].ToString());
-            System.Console.WriteLine("Holding Register at  3: " + server.holdingRegisters[3].ToString());
-            System.Console.WriteLine(DateTime.Now.ToLocalTime());
+            //System.Console.WriteLine("Holding Registers Changed ************************ ");
+            //System.Console.WriteLine("Holding Register at  0: " + server.holdingRegisters[0].ToString());
+            //System.Console.WriteLine("Holding Register at  1: " + server.holdingRegisters[1].ToString());
+            //System.Console.WriteLine("Holding Register at  2: " + server.holdingRegisters[2].ToString());
+            //System.Console.WriteLine("Holding Register at  3: " + server.holdingRegisters[3].ToString());
+            //System.Console.WriteLine(DateTime.Now.ToLocalTime());
 
             bool blnState;
             bool blnContinue = true;
@@ -76,7 +76,9 @@ namespace SparkModbus.Console
             if (mostRecentEvent != null)
             {
                 TimeSpan ts = DateTime.Now.ToLocalTime() - mostRecentEvent.DateTime;
-                if(ts.TotalMilliseconds > 2000)
+                System.Console.WriteLine(ts.TotalSeconds);
+
+                if(ts.TotalMilliseconds > 3000)
                 {
                     blnContinue = true;
                 }
@@ -84,6 +86,10 @@ namespace SparkModbus.Console
                 {
                     blnContinue = false;
                 }
+            }
+            else
+            {
+                blnContinue = true;
             }
 
 
@@ -108,21 +114,9 @@ namespace SparkModbus.Console
            
         }
 
-        private void Server_coilsChanged()
-        {
-            System.Console.Beep(); System.Console.Beep();
-            bool[] coils = server.coils;
+       
 
-            //System.Console.WriteLine(coils.Where(c => c.ToString() == "true").Count());
-            System.Console.WriteLine("Coils Changed");            
-
-        }
-
-        private void Server_numberOfConnectedClientsChanged()
-        {
-            System.Console.Beep();
-            System.Console.WriteLine("Changed");
-        }
+       
 
         static void Main(string[] args)
         {
