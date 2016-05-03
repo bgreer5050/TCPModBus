@@ -41,16 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Asset.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Asset.dbml</DependentUpon>
-    </Compile>
     <Compile Include="Class1.cs" />
-    <Compile Include="MachineState.designer.cs">
+    <Compile Include="CloudSparkContext.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MachineState.dbml</DependentUpon>
+      <DependentUpon>CloudSparkContext.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -61,14 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Asset.dbml">
+    <None Include="CloudSparkContext.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>Asset.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="MachineState.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>MachineState.designer.cs</LastGenOutput>
+      <LastGenOutput>CloudSparkContext.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
@@ -80,13 +70,8 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="MachineState.dbml.layout">
-      <DependentUpon>MachineState.dbml</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Asset.dbml.layout">
-      <DependentUpon>Asset.dbml</DependentUpon>
+    <None Include="CloudSparkContext.dbml.layout">
+      <DependentUpon>CloudSparkContext.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

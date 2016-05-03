@@ -39,13 +39,7 @@ namespace SparkModbus.Console
 
             while (true)
             {
-                //System.Console.WriteLine(server.NumberOfConnections.ToString());
-
-
-
-                //server.holdingRegistersChanged += Server_coilsChanged;
-
-                //server.logDataChanged += Server_coilsChanged;\\
+               
 
             }
         }
@@ -95,9 +89,7 @@ namespace SparkModbus.Console
 
             if(blnContinue==true)
             {
-                SparkCycleListener.DataModel.MachineStateDataContext db = new MachineStateDataContext();
-
-
+                SparkCycleListener.DataModel.CloudSparkContextDataContext db = new CloudSparkContextDataContext();
 
 
                 MachineState state = new MachineState { AssetNumber = server.holdingRegisters[1].ToString(), DateTime = DateTime.Now.ToLocalTime(), MachineState1 = int.Parse(server.holdingRegisters[2].ToString()) };
