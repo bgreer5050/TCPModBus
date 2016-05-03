@@ -23,7 +23,7 @@ namespace SparkCycleListener.DataModel
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="MfrMachineDataLaptop")]
-	public partial class AssetDataContext : System.Data.Linq.DataContext
+	public partial class CloudSparkContextDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -33,33 +33,36 @@ namespace SparkCycleListener.DataModel
     partial void InsertAsset(Asset instance);
     partial void UpdateAsset(Asset instance);
     partial void DeleteAsset(Asset instance);
+    partial void InsertMachineState(MachineState instance);
+    partial void UpdateMachineState(MachineState instance);
+    partial void DeleteMachineState(MachineState instance);
     #endregion
 		
-		public AssetDataContext() : 
+		public CloudSparkContextDataContext() : 
 				base(global::SparkCycleListener.DataModel.Properties.Settings.Default.MfrMachineDataLaptopConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public AssetDataContext(string connection) : 
+		public CloudSparkContextDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public AssetDataContext(System.Data.IDbConnection connection) : 
+		public CloudSparkContextDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public AssetDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public CloudSparkContextDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public AssetDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public CloudSparkContextDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -70,6 +73,14 @@ namespace SparkCycleListener.DataModel
 			get
 			{
 				return this.GetTable<Asset>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MachineState> MachineStates
+		{
+			get
+			{
+				return this.GetTable<MachineState>();
 			}
 		}
 	}
@@ -279,6 +290,212 @@ namespace SparkCycleListener.DataModel
 					this._HeartBeatsRequired = value;
 					this.SendPropertyChanged("HeartBeatsRequired");
 					this.OnHeartBeatsRequiredChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MachineState")]
+	public partial class MachineState : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _AssetNumber;
+		
+		private System.DateTime _DateTime;
+		
+		private int _MachineState1;
+		
+		private bool _Processed;
+		
+		private System.Nullable<bool> _NeedsPosting;
+		
+		private System.Nullable<bool> _Posted;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnAssetNumberChanging(string value);
+    partial void OnAssetNumberChanged();
+    partial void OnDateTimeChanging(System.DateTime value);
+    partial void OnDateTimeChanged();
+    partial void OnMachineState1Changing(int value);
+    partial void OnMachineState1Changed();
+    partial void OnProcessedChanging(bool value);
+    partial void OnProcessedChanged();
+    partial void OnNeedsPostingChanging(System.Nullable<bool> value);
+    partial void OnNeedsPostingChanged();
+    partial void OnPostedChanging(System.Nullable<bool> value);
+    partial void OnPostedChanged();
+    #endregion
+		
+		public MachineState()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AssetNumber", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string AssetNumber
+		{
+			get
+			{
+				return this._AssetNumber;
+			}
+			set
+			{
+				if ((this._AssetNumber != value))
+				{
+					this.OnAssetNumberChanging(value);
+					this.SendPropertyChanging();
+					this._AssetNumber = value;
+					this.SendPropertyChanged("AssetNumber");
+					this.OnAssetNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime DateTime
+		{
+			get
+			{
+				return this._DateTime;
+			}
+			set
+			{
+				if ((this._DateTime != value))
+				{
+					this.OnDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._DateTime = value;
+					this.SendPropertyChanged("DateTime");
+					this.OnDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="MachineState", Storage="_MachineState1", DbType="Int NOT NULL")]
+		public int MachineState1
+		{
+			get
+			{
+				return this._MachineState1;
+			}
+			set
+			{
+				if ((this._MachineState1 != value))
+				{
+					this.OnMachineState1Changing(value);
+					this.SendPropertyChanging();
+					this._MachineState1 = value;
+					this.SendPropertyChanged("MachineState1");
+					this.OnMachineState1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Processed", DbType="Bit NOT NULL")]
+		public bool Processed
+		{
+			get
+			{
+				return this._Processed;
+			}
+			set
+			{
+				if ((this._Processed != value))
+				{
+					this.OnProcessedChanging(value);
+					this.SendPropertyChanging();
+					this._Processed = value;
+					this.SendPropertyChanged("Processed");
+					this.OnProcessedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NeedsPosting", DbType="Bit")]
+		public System.Nullable<bool> NeedsPosting
+		{
+			get
+			{
+				return this._NeedsPosting;
+			}
+			set
+			{
+				if ((this._NeedsPosting != value))
+				{
+					this.OnNeedsPostingChanging(value);
+					this.SendPropertyChanging();
+					this._NeedsPosting = value;
+					this.SendPropertyChanged("NeedsPosting");
+					this.OnNeedsPostingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Posted", DbType="Bit")]
+		public System.Nullable<bool> Posted
+		{
+			get
+			{
+				return this._Posted;
+			}
+			set
+			{
+				if ((this._Posted != value))
+				{
+					this.OnPostedChanging(value);
+					this.SendPropertyChanging();
+					this._Posted = value;
+					this.SendPropertyChanged("Posted");
+					this.OnPostedChanged();
 				}
 			}
 		}

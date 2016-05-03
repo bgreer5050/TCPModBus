@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="CloudSparkContext">
+  <DataContextMoniker Name="/CloudSparkContextDataContext" />
+  <nestedChildShapes>
+    <classShape Id="71d1babe-76cf-4302-91ce-5a3520372afb" absoluteBounds="0.625, 1.75, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/CloudSparkContextDataContext/Asset" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9d27ea4e-284d-4759-bbef-4ad21f1707a2" absoluteBounds="0.64, 2.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b28dd29f-c2c2-4bb2-870b-8b901bb5e7a2" absoluteBounds="2.75, 1.875, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/CloudSparkContextDataContext/MachineState" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0ecc427e-4240-4ccf-96d1-581f3444dbdc" absoluteBounds="2.765, 2.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
