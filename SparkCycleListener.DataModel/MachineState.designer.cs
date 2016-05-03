@@ -90,6 +90,10 @@ namespace SparkCycleListener.DataModel
 		
 		private bool _Processed;
 		
+		private System.Nullable<bool> _NeedsPosting;
+		
+		private System.Nullable<bool> _Posted;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -104,6 +108,10 @@ namespace SparkCycleListener.DataModel
     partial void OnMachineState1Changed();
     partial void OnProcessedChanging(bool value);
     partial void OnProcessedChanged();
+    partial void OnNeedsPostingChanging(System.Nullable<bool> value);
+    partial void OnNeedsPostingChanged();
+    partial void OnPostedChanging(System.Nullable<bool> value);
+    partial void OnPostedChanged();
     #endregion
 		
 		public MachineState()
@@ -207,6 +215,46 @@ namespace SparkCycleListener.DataModel
 					this._Processed = value;
 					this.SendPropertyChanged("Processed");
 					this.OnProcessedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NeedsPosting", DbType="Bit")]
+		public System.Nullable<bool> NeedsPosting
+		{
+			get
+			{
+				return this._NeedsPosting;
+			}
+			set
+			{
+				if ((this._NeedsPosting != value))
+				{
+					this.OnNeedsPostingChanging(value);
+					this.SendPropertyChanging();
+					this._NeedsPosting = value;
+					this.SendPropertyChanged("NeedsPosting");
+					this.OnNeedsPostingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Posted", DbType="Bit")]
+		public System.Nullable<bool> Posted
+		{
+			get
+			{
+				return this._Posted;
+			}
+			set
+			{
+				if ((this._Posted != value))
+				{
+					this.OnPostedChanging(value);
+					this.SendPropertyChanging();
+					this._Posted = value;
+					this.SendPropertyChanged("Posted");
+					this.OnPostedChanged();
 				}
 			}
 		}

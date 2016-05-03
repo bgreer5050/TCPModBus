@@ -45,7 +45,26 @@ namespace SparkProcessCycleRecords
 
                 foreach(var st in group)
                 {
+                    bool blnOkayToPost = false;
                     Console.WriteLine(st.AssetNumber + " " + st.MachineState1 + " " + st.DateTime);
+
+                    //Get the last entry that was processed for the same asset number to see if we need to post this one or if it's a duplicate or
+                    //another RUN or just too close in time indicating a possible debounce issue.
+                    MachineState previousMachineStatePosted = db.MachineStates.OrderByDescending(c => c.DateTime).Where(c => c.Processed == false && c.AssetNumber == st.AssetNumber).FirstOrDefault();
+                    ExpectedCycleTimeDataContext cycleTimeDB = new ExpectedCycleTimeDataContext();
+                    if(previousMachineStatePosted != null)
+                    {
+                        if(st.MachineState1 == 1 && previousMachineStatePosted.MachineState1 == 1)
+                        {
+                            blnOkayToPost = false;
+
+                        }
+                    }
+                    else
+                    {
+                        blnOkayToPost = true;
+                    }
+
 
                 }
                 Console.ReadLine();

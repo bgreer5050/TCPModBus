@@ -42,6 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="ExpectedCycleTime.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExpectedCycleTime.dbml</DependentUpon>
+    </Compile>
     <Compile Include="MachineState.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -56,6 +61,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="ExpectedCycleTime.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ExpectedCycleTime.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="MachineState.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>MachineState.designer.cs</LastGenOutput>
@@ -68,6 +78,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ExpectedCycleTime.dbml.layout">
+      <DependentUpon>ExpectedCycleTime.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="MachineState.dbml.layout">
