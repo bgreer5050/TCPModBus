@@ -41,12 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="ExpectedCycleTime.designer.cs">
+    <Compile Include="Asset.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ExpectedCycleTime.dbml</DependentUpon>
+      <DependentUpon>Asset.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Class1.cs" />
     <Compile Include="MachineState.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -61,9 +61,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="ExpectedCycleTime.dbml">
+    <None Include="Asset.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>ExpectedCycleTime.designer.cs</LastGenOutput>
+      <LastGenOutput>Asset.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="MachineState.dbml">
@@ -80,13 +80,13 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ExpectedCycleTime.dbml.layout">
-      <DependentUpon>ExpectedCycleTime.dbml</DependentUpon>
+    <None Include="MachineState.dbml.layout">
+      <DependentUpon>MachineState.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="MachineState.dbml.layout">
-      <DependentUpon>MachineState.dbml</DependentUpon>
+    <None Include="Asset.dbml.layout">
+      <DependentUpon>Asset.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
